@@ -12,7 +12,7 @@ public abstract class Response<T> {
     private HttpStatus httpCode;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private Integer statusCode;
+    private int statusCode;
 
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private T data;
@@ -47,7 +47,7 @@ public abstract class Response<T> {
         this.statusCode = statusCode;
     }
 
-    public Integer getStatusCode() {
+    public int getStatusCode() {
         return statusCode;
     }
 }

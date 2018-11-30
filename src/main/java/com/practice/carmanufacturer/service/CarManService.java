@@ -1,5 +1,6 @@
 package com.practice.carmanufacturer.service;
 
+import com.practice.carmanufacturer.Exceptions.CarManufacturerNotFound;
 import com.practice.carmanufacturer.entity.CarManufacturer;
 import com.practice.carmanufacturer.entity.ErrorResponse;
 import com.practice.carmanufacturer.entity.Response;
@@ -21,10 +22,7 @@ import java.util.List;
 public class CarManService {
 
     @Autowired
-    CarManufacturerRepository carManRepository;
-
-//    @Autowired
-//    VehicleTypeRepository vehicleTypeRepository;
+    private CarManufacturerRepository carManRepository;
 
     public Response<CarManufacturer> addManufacturer(CarManufacturer manufacturer){
 
@@ -52,7 +50,7 @@ public class CarManService {
         return null;
     }
 
-    public Response<CarManufacturer> removeManufacturer(String id) {
+    public Response<CarManufacturer> removeManufacturer(String id) throws Exception{
 
         Response<CarManufacturer> response;
 
@@ -60,7 +58,7 @@ public class CarManService {
 
             if( (id != null) && (!id.isEmpty()) ){
 
-                CarManufacturer manufacturerToRemove = carManRepository.findById(Integer.valueOf(id)).get();
+                CarManufacturer manufacturerToRemove = carManRepository.findById(Integer.valueOf(id)).orElseThrow(() ->new CarManufacturerNotFound());
 
                 carManRepository.deleteById(Integer.valueOf(id));
 

@@ -2,7 +2,6 @@ package com.practice.carmanufacturer.service;
 
 import com.practice.carmanufacturer.entity.CarManufacturer;
 import com.practice.carmanufacturer.entity.Response;
-import com.practice.carmanufacturer.entity.VehicleType;
 import com.practice.carmanufacturer.repository.CarManufacturerRepository;
 import com.practice.carmanufacturer.utils.SearchParameters;
 import org.junit.Before;
@@ -114,11 +113,11 @@ public class CarManServiceTest {
     }
 
     @Test
-    public void removeManufacturerNullId() {
+    public void removeManufacturerNullId() throws Exception{
 
         Response<CarManufacturer> responseToCheck = carManService.removeManufacturer(null);
 
-        assertEquals(HttpStatus.BAD_REQUEST,responseToCheck.getStatusCode());
+        assertEquals(HttpStatus.BAD_REQUEST.value(),responseToCheck.getStatusCode());
 
     }
 
@@ -131,7 +130,7 @@ public class CarManServiceTest {
 //    }
 
     @Test
-    public void removeManufacturerCorrectId() {
+    public void removeManufacturerCorrectId() throws Exception {
 
         Response<CarManufacturer> responseToCheck = carManService.removeManufacturer("0");
 

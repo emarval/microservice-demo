@@ -12,9 +12,9 @@ public class SearchParameters {
     public final static String SEARCH_PARAM_VEHICLE_TYPE = "VEHICLE_TYPE.NAME";
 
 
-    String country;
-    String name;
-    String vehicleType;
+    private String country;
+    private String name;
+    private String vehicleType;
 
 //    public Map<String,String> getSearchParams(){
 //        Map<String, String> searchMap = new HashMap<>();

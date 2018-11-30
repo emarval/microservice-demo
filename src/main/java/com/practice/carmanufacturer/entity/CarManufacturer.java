@@ -45,7 +45,7 @@ public class CarManufacturer {
         this.vehicleTypes = vehicleTypes;
     }
 
-    public String getCountry() {
+    private String getCountry() {
         return country;
     }
 
@@ -53,7 +53,7 @@ public class CarManufacturer {
         this.country = country;
     }
 
-    public String getCommonName() {
+    private String getCommonName() {
         return commonName;
     }
 
@@ -61,7 +61,7 @@ public class CarManufacturer {
         this.commonName = commonName;
     }
 
-    public Integer getId() {
+    private Integer getId() {
         return id;
     }
 
@@ -69,7 +69,7 @@ public class CarManufacturer {
         this.id = id;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 

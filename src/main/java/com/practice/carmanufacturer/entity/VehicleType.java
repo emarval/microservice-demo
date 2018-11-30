@@ -4,16 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Objects;
 
 @Entity @IdClass(VehicleTypeId.class)
 
 public class VehicleType {
 
-//    @Id
-//    @JsonIgnore
-//    @Column(name = "name")
     @Id
     @JsonProperty("Name")
     private String name;
@@ -32,10 +28,6 @@ public class VehicleType {
 
     private String another;
 
-//    @Id
-//    @JsonIgnore
-////    @GeneratedValue(strategy = GenerationType.AUTO)
-//    private String id;
 
     @ManyToMany(mappedBy = "vehicleTypes",
             cascade = {
@@ -45,20 +37,17 @@ public class VehicleType {
     List<CarManufacturer> carManufacturers;
 
     public VehicleType() {
-//        this.id = getName() + getPrimary();
     }
 
     public VehicleType(String name, Boolean isPrimary) {
-//        this.id = name + isPrimary;
         this.name = name;
         this.isPrimary = isPrimary;
-//        this.id = getName() + getPrimary();
     }
     public VehicleType(String name) {
         this.name = name;
     }
 
-    public String getName() {
+    private String getName() {
         return name;
     }
 

@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Course {
@@ -38,7 +37,7 @@ public class Course {
     }
 
     public void setId(String id) {
-        this.id = id.replaceAll("\\s","_");;
+        this.id = id.replaceAll("\\s","_");
     }
 
     public String getName() {

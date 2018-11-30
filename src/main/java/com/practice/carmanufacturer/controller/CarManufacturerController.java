@@ -57,7 +57,11 @@ public class CarManufacturerController {
 
     @DeleteMapping(path = {"/manufacturers/{id}","/manufacturers/{id}/"})
     public void removeManufacturer(@PathVariable String id){
-        carManService.removeManufacturer(id);
+        try {
+            carManService.removeManufacturer(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @PutMapping(path = {"/manufacturers/{id}","/manufacturers/{id}/"})
     public void updateManufacturer(@RequestBody CarManufacturer manufacturer, @PathVariable String id){
