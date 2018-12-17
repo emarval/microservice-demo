@@ -2,19 +2,31 @@ package com.practice.carmanufacturer.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.jpa.mapping.JpaPersistentEntity;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
-@Entity @IdClass(VehicleTypeId.class)
+@Entity
+//@Table(indexes = {@Index(name = "INDEX_TEST", columnList = "name, isPrimary", unique = true)})
 
 public class VehicleType {
 
+//    @Id
+//    @JsonIgnore
+//    @Column(name = "name")
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+
+//    @Id
     @JsonProperty("Name")
     private String name;
 
-    @Id
+//    @Id
     @JsonProperty("IsPrimary")
     private Boolean isPrimary;
 
@@ -47,7 +59,7 @@ public class VehicleType {
         this.name = name;
     }
 
-    private String getName() {
+    public String getName() {
         return name;
     }
 
@@ -75,5 +87,13 @@ public class VehicleType {
     @Override
     public int hashCode() {
         return Objects.hash(getName(), isPrimary);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

@@ -1,11 +1,9 @@
 package com.practice.carmanufacturer.service;
 
 import com.practice.carmanufacturer.Exceptions.CarManufacturerNotFound;
-import com.practice.carmanufacturer.entity.CarManufacturer;
-import com.practice.carmanufacturer.entity.ErrorResponse;
-import com.practice.carmanufacturer.entity.Response;
-import com.practice.carmanufacturer.entity.SuccessResponse;
+import com.practice.carmanufacturer.entity.*;
 import com.practice.carmanufacturer.repository.CarManufacturerRepository;
+import com.practice.carmanufacturer.repository.VehicleTypeRepository;
 import com.practice.carmanufacturer.utils.SortByUtil;
 import com.practice.carmanufacturer.utils.SearchParameters;
 import javassist.tools.web.BadHttpRequest;
@@ -15,8 +13,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceContextType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarManService {
@@ -24,11 +26,39 @@ public class CarManService {
     @Autowired
     private CarManufacturerRepository carManRepository;
 
+    @Autowired
+    private VehicleTypeRepository vehicleTypeRepository;
+
+//    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+//    EntityManager em;
+
     public Response<CarManufacturer> addManufacturer(CarManufacturer manufacturer){
 
+        System.out.println("<======================================================================>");
+        System.out.println("<======================================================================>");
+        System.out.println("manufacturer to check " + manufacturer);
+        System.out.println("<======================================================================>");
+        System.out.println("<======================================================================>");
 
+        /////this will make it work
+        for (VehicleType vType : manufacturer.getVehicleTypes()) {
+
+            Optional<VehicleType> vTypeInDb = vehicleTypeRepository.findByNameAndIsPrimary(vType.getName(),vType.getPrimary());
+            if(vTypeInDb.isPresent()){
+                System.out.println("is in the db");
+                vType.setId(vTypeInDb.get().getId());
+            }
+//
+        }
         try{
+            if(manufacturer.getId() == 1044){
+                System.out.println("este es");
+            }
+            System.out.println("<======================================================================>");
+            System.out.println("manufacturer to save " + manufacturer);
+            System.out.println("<======================================================================>");
             carManRepository.save(manufacturer);
+
 
             return new SuccessResponse<>(manufacturer, HttpStatus.CREATED);
 
@@ -41,11 +71,18 @@ public class CarManService {
 
     public Response<List<CarManufacturer>> initDb(List<CarManufacturer> manufacturerList){
 
-//        for (CarManufacturer manufacturer : manufacturerList) {
-//            addManufacturer(manufacturer);
-//        }
+        for (CarManufacturer manufacturer : manufacturerList) {
+//            for (CarManufacturer carman : manufacturerList) {
+//
+//
+//            }
+            if(manufacturer.getId()==1054){
+                System.out.println("I love you");
+            }
+            addManufacturer(manufacturer);
+        }
 
-        carManRepository.saveAll(manufacturerList);
+//        carManRepository.saveAll(manufacturerList);
 //        return new SuccessResponse<>(manufacturerList,HttpStatus.CREATED);
         return null;
     }

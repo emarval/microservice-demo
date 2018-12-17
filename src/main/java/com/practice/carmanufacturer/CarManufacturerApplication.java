@@ -31,9 +31,9 @@ public class CarManufacturerApplication {
     public static void main(String[] args) {
         SpringApplication.run(CarManufacturerApplication.class, args);
 
-        System.out.println("hola");
+//        System.out.println("hola");
 
-        carManService.addManufacturer(null);
+//        carManService.addManufacturer(null);
 
 
 

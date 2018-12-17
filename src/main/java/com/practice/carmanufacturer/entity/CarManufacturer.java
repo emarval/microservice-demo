@@ -61,7 +61,7 @@ public class CarManufacturer {
         this.commonName = commonName;
     }
 
-    private Integer getId() {
+    public Integer getId() {
         return id;
     }
 

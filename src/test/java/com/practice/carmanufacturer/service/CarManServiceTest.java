@@ -2,6 +2,7 @@ package com.practice.carmanufacturer.service;
 
 import com.practice.carmanufacturer.entity.CarManufacturer;
 import com.practice.carmanufacturer.entity.Response;
+import com.practice.carmanufacturer.entity.VehicleType;
 import com.practice.carmanufacturer.repository.CarManufacturerRepository;
 import com.practice.carmanufacturer.utils.SearchParameters;
 import org.junit.Before;
